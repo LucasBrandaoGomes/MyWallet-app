@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { useState } from  "react"
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Signup from './Signup'
+import Login from "./Login";
 import InfoLoginContext from "../contexts/InfoLogin";
 
 export default function App(){
@@ -15,7 +16,7 @@ export default function App(){
                     <div className="root">
                         <Container>
                             <Routes>
-                                <Route path="/" element={<Login />}/>
+                                <Route path="/login" element={<Login />}/>
                                 <Route path="/signup" element={<Signup />}/>
                             </Routes>
                         </Container>

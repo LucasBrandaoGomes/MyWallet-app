@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import logoEntrada from "../assets/img/Group8.jpg"
 import { Link } from "react-router-dom"
 import axios from "axios"
 import {useNavigate} from 'react-router-dom';
@@ -7,7 +6,7 @@ import  { useState } from  "react"
 import { ThreeDots } from "react-loader-spinner";
 
 
-export default function Cadastro(){
+export default function Signup(){
     
     const navigate = useNavigate();
     const [email, setEmail] = useState("")
@@ -35,7 +34,7 @@ export default function Cadastro(){
         
         promise
         .then(res =>{ 
-            navigate("/");
+            navigate("/login");
         })
         .catch(err=> {alert("Erro, preencha corretamente os dados");
         setDisableButton(false);});
@@ -53,7 +52,7 @@ export default function Cadastro(){
                 <Cadastrar type="submit" disabled={disableButton}>{disableButton ? <ThreeDots color="white"/> : "Cadastrar"}</Cadastrar>
             </Form >
             <Loguese>
-                <Link to="/">
+                <Link to="/login">
                     <p>Já tem uma conta?Faça login</p>
                 </Link>
             </Loguese>
@@ -65,8 +64,7 @@ const Form = styled.form`
     display:flex;
     flex-direction: column;
     width: 303px;
-    height: 45px;
-    background: #FFFFFF;
+    background-color: #8C11BE;
     input{
         background: ${props => props.disabled ? "grey" : "#ffffff"};
         color: ${props => props.disabled ? "#AFAFAF" : "grey"};
@@ -105,7 +103,7 @@ const Cadastrar = styled.button`
     }
 `
 const Loguese = styled.div`
-    margin-top:155px;
+    margin-top:35px;
     p{
         font-family: 'Lexend Deca';
         font-style: normal;

@@ -5,7 +5,11 @@
 }
 
 .root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #8C11BE;
     width: 375px;
     height: 100vh;
+    
 }

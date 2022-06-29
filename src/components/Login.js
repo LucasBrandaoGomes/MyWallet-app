@@ -1,18 +1,17 @@
 import styled from "styled-components"
-import logoEntrada from "../assets/img/Group8.jpg"
 import {useState} from "react"
 import { Link } from "react-router-dom"
 import axios from "axios"
 import { ThreeDots } from "react-loader-spinner";
-import {useNavigate} from 'react-router-dom';
+//import {useNavigate} from 'react-router-dom';
 import { useContext } from "react";
 import InfoLoginContext from "../contexts/InfoLogin"
 
-export default function LoginPage(){
+export default function Login(){
 
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
     const [email, setEmail] = useState("")
-    const [senha, setSenha] = useState("")
+    const [password, setPassword] = useState("")
     const [disableButton,setDisableButton] = useState(false)
     
     const { setInfoLogin } = useContext(InfoLoginContext);
@@ -22,18 +21,18 @@ export default function LoginPage(){
         
         setDisableButton(true);
 
-        const envioLogin =
+        const sendLogin =
             {
                 email,
-                password: senha
+                password
             }
         
-        const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", envioLogin)
+        const promise = axios.post("https://localhost:5000/login", sendLogin)
         
         promise            
         .then(res => {
             setInfoLogin({...res.data});
-            navigate("/hoje");
+            //navigate("/hoje");
 
         })
         .catch(err=> {
@@ -43,12 +42,9 @@ export default function LoginPage(){
 
     return(
         <>  
-            <Logo>
-                <img src={logoEntrada} alt="Logo entrada"/>
-            </Logo>
             <Form onSubmit={SubmitLogin}>
                 <input type="email" disabled={disableButton} placeholder="email"  value={email} onChange={e => setEmail(e.target.value)} required/>
-                <input type="password" disabled={disableButton} placeholder="senha" value={senha} onChange={e => setSenha(e.target.value)} required/>
+                <input type="password" disabled={disableButton} placeholder="password" value={password} onChange={e => setPassword(e.target.value)} required/>
                 <Entrar type="submit" disabled={disableButton}>{disableButton ? <ThreeDots color="white"/> : "Entrar"}</Entrar>
             </Form >
             <Cadastrese>
@@ -59,16 +55,12 @@ export default function LoginPage(){
         </>
    )
 }
-const Logo = styled.div`
-    margin-top: 68px;
-    margin-bottom:33px;
-`
+
 const Form = styled.form`
     display:flex;
     flex-direction: column;
     width: 303px;
-    height: 45px;
-    background:#FFFFFF;
+    background-color: #8C11BE;
     input{
         background: ${props => props.disabled ? "grey" : "#ffffff"};
         color: ${props => props.disabled ? "#AFAFAF" : "grey"};
@@ -108,7 +100,7 @@ const Entrar = styled.button`
     }
 `
 const Cadastrese = styled.div`
-    margin-top:75px;
+    margin-top:35px;
     p{
         font-family: 'Lexend Deca';
         font-style: normal;
