@@ -3,13 +3,13 @@ import {useState} from "react"
 import { Link } from "react-router-dom"
 import axios from "axios"
 import { ThreeDots } from "react-loader-spinner";
-//import {useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import { useContext } from "react";
 import InfoLoginContext from "../contexts/InfoLogin"
 
 export default function Login(){
 
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [disableButton,setDisableButton] = useState(false)
@@ -23,16 +23,16 @@ export default function Login(){
 
         const sendLogin =
             {
-                email,
-                password
+                email:email,
+                password:password
             }
-        
-        const promise = axios.post("https://localhost:5000/login", sendLogin)
+            
+        const promise = axios.post("http://localhost:5000/login", sendLogin)
         
         promise            
         .then(res => {
             setInfoLogin({...res.data});
-            //navigate("/hoje");
+            navigate("/adddebit");
 
         })
         .catch(err=> {
@@ -42,6 +42,7 @@ export default function Login(){
 
     return(
         <>  
+            <h1>MyWallet</h1>
             <Form onSubmit={SubmitLogin}>
                 <input type="email" disabled={disableButton} placeholder="email"  value={email} onChange={e => setEmail(e.target.value)} required/>
                 <input type="password" disabled={disableButton} placeholder="password" value={password} onChange={e => setPassword(e.target.value)} required/>
@@ -81,19 +82,22 @@ const Form = styled.form`
 const Entrar = styled.button`
     width: 303px;
     height: 45px;
-    background: #52B6FF;
+    background: #A328D6;
     border: none;
     border-radius: 4.63636px;
     text-decoration: none; 
     display:flex;
     align-items:center;
     justify-content:center;
-    font-family: 'Lexend Deca';
+    
+    font-family: 'Raleway';
     font-style: normal;
-    font-weight: 400;
-    font-size: 20.976px;
-    line-height: 26px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+
     color: #FFFFFF;
+
     opacity: ${props => props.disabled ? 0.4 : 1 };
     &:hover{
         cursor:pointer;
@@ -102,12 +106,13 @@ const Entrar = styled.button`
 const Cadastrese = styled.div`
     margin-top:35px;
     p{
-        font-family: 'Lexend Deca';
+        font-family: 'Raleway';
         font-style: normal;
-        font-weight: 400;
-        font-size: 13.976px;
-        line-height: 17px;
-        text-decoration-line: underline;
-        color: #52B6FF;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 18px;
+
+
+        color: #FFFFFF;
     }
     `

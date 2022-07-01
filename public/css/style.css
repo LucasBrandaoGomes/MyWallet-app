@@ -13,3 +13,15 @@
     height: 100vh;
     
 }
+h1{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 31px;
+
+    color: #FFFFFF;
+
+    margin-bottom: 28px;
+
+}

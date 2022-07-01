@@ -30,7 +30,7 @@ export default function Signup(){
             }
         
 
-        const promise = axios.post("https://localhost:5000/signup", infoSignUp)
+        const promise = axios.post("http://localhost:5000/signup", infoSignUp)
         
         promise
         .then(res =>{ 
@@ -43,6 +43,7 @@ export default function Signup(){
 
     return(
         <>
+            <h1>MyWallet</h1>
             <Form onSubmit={SubmitSignUp} >
                 
                 <input type="text" disabled={disableButton} placeholder="nome" value={name} onChange={e => setName(e.target.value)} required/>
@@ -84,18 +85,20 @@ const Form = styled.form`
 const Cadastrar = styled.button`
     width: 303px;
     height: 45px;
-    background: #52B6FF;
+    background: #A328D6;
     border: none;
     border-radius: 4.63636px;
     text-decoration: none; 
     display:flex;
     align-items:center;
     justify-content:center;
-    font-family: 'Lexend Deca';
+    
+    font-family: 'Raleway';
     font-style: normal;
-    font-weight: 400;
-    font-size: 20.976px;
-    line-height: 26px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+
     color: #FFFFFF;
     opacity: ${props => props.disabled ? 0.4 : 1 };
     &:hover{
@@ -105,12 +108,13 @@ const Cadastrar = styled.button`
 const Loguese = styled.div`
     margin-top:35px;
     p{
-        font-family: 'Lexend Deca';
+        font-family: 'Raleway';
         font-style: normal;
-        font-weight: 400;
-        font-size: 13.976px;
-        line-height: 17px;
-        text-decoration-line: underline;
-        color: #52B6FF;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 18px;
+
+
+        color: #FFFFFF;
     }
     `
