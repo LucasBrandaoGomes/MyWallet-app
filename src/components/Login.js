@@ -32,7 +32,7 @@ export default function Login(){
         promise            
         .then(res => {
             setInfoLogin({...res.data});
-            navigate("/adddebit");
+            navigate("/wallet");
 
         })
         .catch(err=> {

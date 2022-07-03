@@ -4,10 +4,11 @@ import axios from "axios";
 import { ThreeDots } from "react-loader-spinner";
 import { useContext } from "react";
 import InfoLoginContext from "../contexts/InfoLogin";
-
+import {useNavigate} from 'react-router-dom';
 
 export function Addcredit(){
 
+    const navigate = useNavigate();
     const { infoLogin } = useContext(InfoLoginContext);
     const [creditValue, setCreditValue] = useState();
     const [valueDescription, setValueDescription] = useState();
@@ -33,8 +34,7 @@ export function Addcredit(){
         
         promise            
         .then(res => {
-            console.log("valor enviado com sucesso")
-            //navigate("/hoje");
+            navigate("/wallet");
 
         })
         .catch(err=> {

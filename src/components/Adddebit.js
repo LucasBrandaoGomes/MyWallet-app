@@ -4,10 +4,12 @@ import axios from "axios";
 import { ThreeDots } from "react-loader-spinner";
 import { useContext } from "react";
 import InfoLoginContext from "../contexts/InfoLogin";
+import {useNavigate} from 'react-router-dom';
 
 
 export function Adddebit(){
 
+    const navigate = useNavigate();
     const { infoLogin } = useContext(InfoLoginContext);
     const [debitValue, setDebitValue] = useState();
     const [valueDescription, setValueDescription] = useState();
@@ -33,12 +35,11 @@ export function Adddebit(){
         
         promise            
         .then(res => {
-            console.log("valor enviado com sucesso")
-            res.sendStatus(200)
-            //navigate("/hoje");
+            navigate("/wallet");
 
         })
         .catch(err=> {
+            console.log(err)
             alert("Erro ao enviar valor");
             setDisableButton(false)})
     }
