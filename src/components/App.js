@@ -5,8 +5,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Signup from './Signup'
 import Login from "./Login";
 import InfoLoginContext from "../contexts/InfoLogin";
-import { Addcredit } from "./Addcredit";
-import { Adddebit } from "./Adddebit";
+import Addcredit  from "./Addcredit";
+import Adddebit  from "./Adddebit";
 import Wallet from "./Wallet";
 
 export default function App(){

@@ -11,6 +11,7 @@ export default function Wallet(){
     const navigate = useNavigate();
     const { infoLogin } = useContext(InfoLoginContext);
     const [myWallet, setMyWallet] = useState([])
+    const [reload, setReload] = useState(false);
 
     const config = 
     {
@@ -22,24 +23,48 @@ export default function Wallet(){
     const promise = axios.get("http://localhost:5000/wallet", config)
     
     promise.then(res => {
-        console.log(res.data)
         setMyWallet([...res.data]);
         });
-    }, []);
+    }, [reload]);
 
     function Registers(){
 
-        function Register({date, details, amount, type}){
+        function OverBalance(){
+            let soma = 0;
+            for (let i=0; i<myWallet.length; i++){
+                if (myWallet.type === "credit"){
+                    soma+= -parseInt(myWallet.amount)
+                }else{
+                    soma+= parseInt(myWallet.amount)
+                }
+            }
+            console.log(soma)
+            return soma
+        }
+        
+        function Delete({id}) {
+           
+              axios.delete(`http://localhost:5000/wallet/${id}`, config)
+                .then(res => {
+                    setReload(!reload);})
+                .catch(err => {
+                console.error('Não foi possível apagar valor');
+                console.error(err);
+              });
+            
+        }
+        
+        function Register({date, details, amount, type, id}){
             return (
                 <>
-                    <List>
+                    <List type={type}>
                         <div>
                             <p>{date}</p>
                             <p>{details}</p>
                         </div>
                         <div>
-                            <p type={type}>{amount}</p>
-                            <ion-icon name="close-outline"></ion-icon>
+                            <p>{amount}</p>
+                            <ion-icon onClick={() => Delete({id})} name="close-outline"></ion-icon>
                         </div>
                     </List>
                 </>
@@ -49,8 +74,8 @@ export default function Wallet(){
         return (
             <>
                 <Main>
-                    {myWallet.map(item => <Register date={item.date} details={item.discription} type={item.type} amount={item.amount} />)}    
-                    <Balance><p>SALDO</p><p>XXXX</p></Balance>
+                    {myWallet.map(item => <Register date={item.date} details={item.discription} type={item.type} amount={item.amount} id={item._id}/>)}    
+                    <Balance><p>SALDO</p><p>{OverBalance()}</p></Balance>
                 </Main>
             </>
         )
@@ -59,15 +84,28 @@ export default function Wallet(){
     function AddNewCredit(){
         navigate("/addcredit")
     }
+
     function AddNewDebit(){
         navigate("/adddebit")
     }
-    
+
+    function Logout(){
+        
+        axios.delete(`http://localhost:5000/wallet`, config)
+          .then(res => {
+              navigate('/login');})
+          .catch(err => {
+            console.log("falhou a sair")
+          console.error(err);
+        });
+      
+    }
+
     return(
         <>  
             <Top>
                 <p>Olá, {infoLogin.name}</p>
-                <ion-icon name="exit-outline"></ion-icon>
+                <ion-icon onClick={Logout} name="exit-outline"></ion-icon>
             </Top>
             {myWallet.length === 0 ?<Empty><p>Não há registros de entrada e saída</p></Empty> 
             :
@@ -235,7 +273,7 @@ const List = styled.div`
             line-height: 19px;
             text-align: right;
 
-            color: #C70000;
+            color: ${props => props.type ==="debit" ? "#C70000" : "#03AC00"};
         }
         ion-icon{
             font-size: 20px;

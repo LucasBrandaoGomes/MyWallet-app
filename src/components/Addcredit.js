@@ -6,13 +6,17 @@ import { useContext } from "react";
 import InfoLoginContext from "../contexts/InfoLogin";
 import {useNavigate} from 'react-router-dom';
 
-export function Addcredit(){
+export default function Addcredit(){
 
     const navigate = useNavigate();
     const { infoLogin } = useContext(InfoLoginContext);
     const [creditValue, setCreditValue] = useState();
     const [valueDescription, setValueDescription] = useState();
     const [disableButton,setDisableButton] = useState(false)
+
+    function ReturnWallet(){
+        navigate('/wallet')
+    }
 
     function SubmitAdd(e){
         e.preventDefault();
@@ -49,6 +53,7 @@ export function Addcredit(){
                 <input type="number" disabled={disableButton} placeholder="valor"  value={creditValue} onChange={e => setCreditValue(e.target.value)} required/>
                 <input type="string" disabled={disableButton} placeholder="decrição" value={valueDescription} onChange={e => setValueDescription(e.target.value)} required/>
                 <SalvarEntrada type="submit" disabled={disableButton}>{disableButton ? <ThreeDots color="white"/> : "Salvar entrada"}</SalvarEntrada>
+                <p onClick={ReturnWallet}>Voltar para carteira</p>
             </Form >
             
         </>
@@ -57,6 +62,7 @@ export function Addcredit(){
 const Form = styled.form`
     display:flex;
     flex-direction: column;
+    align-items:center;
     width: 303px;
     background-color: #8C11BE;
     input{
@@ -73,6 +79,21 @@ const Form = styled.form`
         ::placeholder{
             font-size: 18px;
             color: #DBDBDB;
+        }
+    }
+    
+    p{  
+        margin-top:35px;
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 18px;
+
+        color: #FFFFFF;
+
+        &:hover{
+        cursor:pointer;
         }
     }
 `

@@ -6,14 +6,17 @@ import { useContext } from "react";
 import InfoLoginContext from "../contexts/InfoLogin";
 import {useNavigate} from 'react-router-dom';
 
-
-export function Adddebit(){
+export default function Adddebit(){
 
     const navigate = useNavigate();
     const { infoLogin } = useContext(InfoLoginContext);
     const [debitValue, setDebitValue] = useState();
     const [valueDescription, setValueDescription] = useState();
     const [disableButton,setDisableButton] = useState(false)
+
+    function ReturnWallet(){
+        navigate('/wallet')
+    }
 
     function SubmitAdd(e){
         e.preventDefault();
@@ -51,6 +54,7 @@ export function Adddebit(){
                 <input type="number" disabled={disableButton} placeholder="valor"  value={debitValue} onChange={e => setDebitValue(e.target.value)} required/>
                 <input type="string" disabled={disableButton} placeholder="decrição" value={valueDescription} onChange={e => setValueDescription(e.target.value)} required/>
                 <SalvarSaida type="submit" disabled={disableButton}>{disableButton ? <ThreeDots color="white"/> : "Salvar saída"}</SalvarSaida>
+                <p onClick={ReturnWallet}>Voltar para carteira</p>
             </Form >
             
         </>
@@ -75,6 +79,20 @@ const Form = styled.form`
         ::placeholder{
             font-size: 18px;
             color: #DBDBDB;
+        }
+    }
+    p{  
+        margin-top:35px;
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 18px;
+
+        color: #FFFFFF;
+        
+        &:hover{
+        cursor:pointer;
         }
     }
 `
