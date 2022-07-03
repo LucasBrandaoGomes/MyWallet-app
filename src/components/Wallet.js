@@ -46,7 +46,7 @@ export default function Wallet(){
            
               axios.delete(`http://localhost:5000/wallet/${id}`, config)
                 .then(res => {
-                    setReload(!reload);})
+                    setReload(!reload)})
                 .catch(err => {
                 console.error('Não foi possível apagar valor');
                 console.error(err);
@@ -128,7 +128,7 @@ const Top = styled.div`
     justify-content:space-between;
     align-items:center;
     width: 326px;
-    margin-bottom: 28px;
+    margin-bottom: 22px;
     p{
         font-family: 'Raleway';
         font-style: normal;
@@ -172,12 +172,12 @@ const Main = styled.div`
     display:flex;
     flex-direction:column;
     align-items:center;
-    
+    box-sizing: border-box;
     width: 326px;
     height: 446px;
     background: #FFFFFF;
     border-radius: 5px;
-    padding-top:20px;
+    padding-top:1px;
     position:relative;
 `
 const Footer = styled.div`
@@ -185,6 +185,7 @@ const Footer = styled.div`
     width:326px;
     justify-content:space-between;
     margin-top: 13px;
+    box-sizing:border-box;
     `
 const Box = styled.div`
     display:flex;

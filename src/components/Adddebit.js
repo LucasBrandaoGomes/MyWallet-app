@@ -65,6 +65,7 @@ const Form = styled.form`
     flex-direction: column;
     width: 303px;
     background-color: #8C11BE;
+    align-items:center;
     input{
         background: ${props => props.disabled ? "grey" : "#ffffff"};
         color: ${props => props.disabled ? "#AFAFAF" : "grey"};
