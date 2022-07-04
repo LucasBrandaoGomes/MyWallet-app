@@ -32,13 +32,13 @@ export default function Wallet(){
         function OverBalance(){
             let soma = 0;
             for (let i=0; i<myWallet.length; i++){
-                if (myWallet.type === "credit"){
-                    soma+= myWallet[i].amount
+                if (myWallet[i].type === "credit"){
+                    soma+= Number.parseFloat(myWallet[i].amount)
                 }else{
-                    soma = soma - myWallet[i].amount
+                    soma-= Number.parseFloat(myWallet[i].amount)
                 }
             }
-            return soma
+            return soma.toFixed(2)
         }
         
         function Delete({id}) {

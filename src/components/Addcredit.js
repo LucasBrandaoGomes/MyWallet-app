@@ -50,7 +50,7 @@ export default function Addcredit(){
         <>  
             <h1>Nova entrada</h1>
             <Form onSubmit={SubmitAdd}>
-                <input type="number" disabled={disableButton} placeholder="valor"  value={creditValue} onChange={e => setCreditValue(e.target.value)} required/>
+                <input type="float" disabled={disableButton} placeholder="valor"  value={creditValue} onChange={e => setCreditValue(e.target.value)} required/>
                 <input type="string" disabled={disableButton} placeholder="decrição" value={valueDescription} onChange={e => setValueDescription(e.target.value)} required/>
                 <SalvarEntrada type="submit" disabled={disableButton}>{disableButton ? <ThreeDots color="white"/> : "Salvar entrada"}</SalvarEntrada>
                 <p onClick={ReturnWallet}>Voltar para carteira</p>
