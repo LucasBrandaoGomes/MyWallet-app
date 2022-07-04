@@ -33,26 +33,26 @@ export default function Wallet(){
             let soma = 0;
             for (let i=0; i<myWallet.length; i++){
                 if (myWallet.type === "credit"){
-                    soma+= -parseInt(myWallet.amount)
+                    soma+= myWallet[i].amount
                 }else{
-                    soma+= parseInt(myWallet.amount)
+                    soma = soma - myWallet[i].amount
                 }
             }
-            console.log(soma)
             return soma
         }
         
         function Delete({id}) {
-           
-              axios.delete(`http://localhost:5000/wallet/${id}`, config)
-                .then(res => {
-                    setReload(!reload)})
-                .catch(err => {
-                console.error('Não foi possível apagar valor');
-                console.error(err);
-              });
-            
-        }
+        
+            axios.delete(`http://localhost:5000/wallet/${id}`, config)
+              .then(res => {
+                  setReload(!reload);})
+                  
+              .catch(err => {
+              console.error('Não foi possível apagar valor');
+              console.error(err);
+            });
+          
+      }
         
         function Register({date, details, amount, type, id}){
             return (
