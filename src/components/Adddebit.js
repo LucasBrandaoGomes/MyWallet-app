@@ -34,7 +34,7 @@ export default function Adddebit(){
                     Authorization: `Bearer ${infoLogin.token}`
                 }
             }       
-        const promise = axios.post("http://localhost:5000/adddebit", newDebit, config)
+        const promise = axios.post("https://back-api-mywallet.herokuapp.com/adddebit", newDebit, config)
         
         promise            
         .then(res => {

@@ -8,6 +8,7 @@ import InfoLoginContext from "../contexts/InfoLogin";
 import Addcredit  from "./Addcredit";
 import Adddebit  from "./Adddebit";
 import Wallet from "./Wallet";
+import Init from "./Init";
 
 export default function App(){
     
@@ -19,6 +20,7 @@ export default function App(){
                     <div className="root">
                         <Container>
                             <Routes>
+                                <Route path="/" element={<Init />}/>
                                 <Route path="/login" element={<Login />}/>
                                 <Route path="/signup" element={<Signup />}/>
                                 <Route path="/addcredit" element={<Addcredit />}/>

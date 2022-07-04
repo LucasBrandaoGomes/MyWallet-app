@@ -20,7 +20,7 @@ export default function Wallet(){
     
     useEffect(() => {
 
-    const promise = axios.get("http://localhost:5000/wallet", config)
+    const promise = axios.get("https://back-api-mywallet.herokuapp.com/wallet", config)
     
     promise.then(res => {
         setMyWallet([...res.data]);
@@ -43,7 +43,7 @@ export default function Wallet(){
         
         function Delete({id}) {
         
-            axios.delete(`http://localhost:5000/wallet/${id}`, config)
+            axios.delete(`https://back-api-mywallet.herokuapp.com/wallet/${id}`, config)
               .then(res => {
                   setReload(!reload);})
                   
@@ -91,7 +91,7 @@ export default function Wallet(){
 
     function Logout(){
         
-        axios.delete(`http://localhost:5000/wallet`, config)
+        axios.delete(`https://back-api-mywallet.herokuapp.com/wallet`, config)
           .then(res => {
               navigate('/login');})
           .catch(err => {
